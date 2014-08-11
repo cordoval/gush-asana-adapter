@@ -17,20 +17,20 @@ use Symfony\Component\Console\Helper\HelperSet;
 /**
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
-class GitHubEnterpriseFactory
+class AsanaEnterpriseFactory
 {
     public static function createAdapter($adapterConfig, Config $config)
     {
-        return new GitHubEnterpriseAdapter($adapterConfig, $config);
+        return new AsanaEnterpriseAdapter($adapterConfig, $config);
     }
 
     public static function createAdapterConfigurator(HelperSet $helperSet)
     {
         $configurator = new DefaultConfigurator(
             $helperSet->get('question'),
-            'GitHub Enterprise',
-            'https://api.github.com/',
-            'https://github.com'
+            'Asana Enterprise',
+            'https://api.Asana.com/',
+            'https://Asana.com'
         );
 
         return $configurator;
@@ -38,14 +38,14 @@ class GitHubEnterpriseFactory
 
     public static function createIssueTracker($adapterConfig, Config $config)
     {
-        return new GitHubEnterpriseAdapter($adapterConfig, $config);
+        return new AsanaEnterpriseAdapter($adapterConfig, $config);
     }
 
     public static function createIssueTrackerConfigurator(HelperSet $helperSet)
     {
         $configurator = new DefaultConfigurator(
             $helperSet->get('question'),
-            'GitHub Enterprise Issue Tracker',
+            'Asana Enterprise Issue Tracker',
             '',
             ''
         );

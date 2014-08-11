@@ -11,10 +11,10 @@
 
 namespace Gush\Adapter;
 
-use Github\Client;
-use Github\Exception\ValidationFailedException;
-use Github\HttpClient\CachedHttpClient;
-use Github\ResultPager;
+use Asana\Client;
+use Asana\Exception\ValidationFailedException;
+use Asana\HttpClient\CachedHttpClient;
+use Asana\ResultPager;
 use Gush\Config;
 use Gush\Exception\AdapterException;
 use Gush\Util\ArrayUtil;
@@ -24,7 +24,7 @@ use Guzzle\Plugin\Log\LogPlugin;
  * @author Aaron Scherer <aequasi@gmail.com>
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
-class GitHubAdapter extends BaseAdapter implements IssueTracker
+class AsanaAdapter extends BaseAdapter implements IssueTracker
 {
     /**
      * @var string|null
@@ -64,7 +64,7 @@ class GitHubAdapter extends BaseAdapter implements IssueTracker
     {
         $this->config = $config;
         $this->globalConfig = $globalConfig;
-        $this->client = $this->buildGitHubClient();
+        $this->client = $this->buildAsanaClient();
     }
 
     /**
@@ -72,13 +72,13 @@ class GitHubAdapter extends BaseAdapter implements IssueTracker
      */
     public function supportsRepository($remoteUrl)
     {
-        return false !== stripos($remoteUrl, 'github.com');
+        return false !== stripos($remoteUrl, 'Asana.com');
     }
 
     /**
      * @return Client
      */
-    protected function buildGitHubClient()
+    protected function buildAsanaClient()
     {
         $cachedClient = new CachedHttpClient(
             [
@@ -89,7 +89,7 @@ class GitHubAdapter extends BaseAdapter implements IssueTracker
 
         $client = new Client($cachedClient);
 
-        if (false !== getenv('GITHUB_DEBUG')) {
+        if (false !== getenv('Asana_DEBUG')) {
             $logPlugin = LogPlugin::getDebugPlugin();
             $httpClient = $client->getHttpClient();
             $httpClient->addSubscriber($logPlugin);
@@ -630,7 +630,7 @@ class GitHubAdapter extends BaseAdapter implements IssueTracker
             'updated_at' => !empty($pr['updated_at']) ? new \DateTime($pr['updated_at']) : null,
             'user' => $pr['user']['login'],
             'assignee' => null,
-            'merge_commit' => null, // empty as GitHub doesn't provide this yet, merge_commit_sha is deprecated and not meant for this
+            'merge_commit' => null, // empty as Asana doesn't provide this yet, merge_commit_sha is deprecated and not meant for this
             'merged' => isset($pr['merged_by']) && isset($pr['merged_by']['login']),
             'merged_by' => isset($pr['merged_by']) && isset($pr['merged_by']['login']) ? $pr['merged_by']['login'] : '',
             'head' => [

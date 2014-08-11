@@ -1,6 +1,6 @@
 {
-    "name": "gushphp/gush-github-adapter",
-    "description": "GitHub adapter for Gush",
+    "name": "gushphp/gush-asana-adapter",
+    "description": "Asana adapter for Gush",
     "license": "MIT",
     "authors": [
         {
@@ -10,10 +10,6 @@
         {
             "name": "Luis Cordova",
             "email": "cordoval@gmail.com"
-        },
-        {
-            "name": "Sebastiaan Stok",
-            "email": "s.stok@rollercapes.net"
         }
     ],
     "autoload": {

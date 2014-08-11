@@ -11,13 +11,13 @@
 
 namespace Gush\Adapter;
 
-use Github\Client;
-use Github\Exception\TwoFactorAuthenticationRequiredException;
+use Asana\Client;
+use Asana\Exception\TwoFactorAuthenticationRequiredException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class GitHubConfigurator extends DefaultConfigurator
+class AsanaConfigurator extends DefaultConfigurator
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class GitHubConfigurator extends DefaultConfigurator
                     // Make a call to test authentication
                     $client->api('authorizations')->all();
                 } catch (TwoFactorAuthenticationRequiredException $e) {
-                    // Create a random authorization to make GitHub send the code
+                    // Create a random authorization to make Asana send the code
                     // We expect an exception, which gets cached by the next catch-block
                     // Note. This authorization is not actually created
                     $client->api('authorizations')->create(

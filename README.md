@@ -1,11 +1,11 @@
-gush-github-adapter
+asana-github-adapter
 ===================
 
-GitHub adapter for Gush
+Asana adapter for Gush
 
 
 ## To Use
 
 ```sh
-gush configure --adapter=github
+gush configure --adapter=asana
 ```

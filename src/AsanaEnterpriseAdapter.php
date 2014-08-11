@@ -14,7 +14,7 @@ namespace Gush\Adapter;
 /**
  * @author Pierre du Plessis <pdples@gmail.com>
  */
-class GitHubEnterpriseAdapter extends GitHubAdapter
+class AsanaEnterpriseAdapter extends AsanaAdapter
 {
     /**
      * {@inheritdoc}
